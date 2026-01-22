@@ -1,0 +1,38 @@
+.editor {
+  & :global {
+    // required for the placeholder to render
+    .tiptap p.is-editor-empty:first-child::before {
+      color: rgba(0, 0, 0, 0.25); // antd token.colorTextPlaceholder
+      content: attr(data-placeholder);
+      float: left;
+      height: 0;
+      pointer-events: none;
+    }
+
+    // remove border around selected element (doesnt even cover the whole text box, very ugly)
+    .ProseMirror-focused {
+      outline: none !important;
+    }
+
+    // elements inside the text field get an unwanted 10px margin-bottom
+    .tiptap * {
+      margin-bottom: 0;
+    }
+
+    // give the input field some padding
+    .tiptap {
+      padding: 10px;
+      min-height: 100px;
+    }
+  }
+}
+
+.readOnly {
+  & :global {
+    // no padding on the rendered text
+    .tiptap {
+      padding: 0;
+      min-height: 0;
+    }
+  }
+}
