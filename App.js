@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import DOMComponent from "./component/DOMComponent";
 import Tiptap from "./component/Tiptap";
 import RichTextViewer from "./component/TipTapCeterus/RichTextViewer";
 import RichTextEditor from "./component/TipTapCeterus/RichTextEditor";
+import { useState } from "react";
 
 const content = {
   type: "doc",
@@ -33,13 +34,23 @@ const content = {
 };
 
 export default function App() {
+  const [richText, setRichText] = useState();
+
+  const handleUpdate = (editorContent) => {
+    setRichText(editorContent.rich);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <StatusBar style="auto" />
       <DOMComponent name="Chris" />
       <Tiptap content={content} />
-      <RichTextViewer content={content} maxHeight={400} />
-      <RichTextEditor content={content} maxHeight={400} />
+      <RichTextViewer content={richText} maxHeight={400} />
+      <RichTextEditor
+        content={content}
+        maxHeight={500}
+        onUpdate={handleUpdate}
+      />
     </ScrollView>
   );
 }
@@ -50,6 +61,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "stretch",
     justifyContent: "center",
-    width: "100%",
+    margin: 20,
   },
 });
