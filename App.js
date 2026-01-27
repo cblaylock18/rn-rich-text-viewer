@@ -5,6 +5,7 @@ import Tiptap from "./component/Tiptap";
 import RichTextViewer from "./component/TipTapCeterus/RichTextViewer";
 import RichTextEditor from "./component/TipTapCeterus/RichTextEditor";
 import { useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const content = {
   type: "doc",
@@ -41,6 +42,7 @@ export default function App() {
   };
 
   return (
+    // <SafeAreaView style={{ flex: 1 }}>
     <ScrollView contentContainerStyle={styles.container}>
       <StatusBar style="auto" />
       <DOMComponent name="Chris" />
@@ -52,6 +54,7 @@ export default function App() {
         onUpdate={handleUpdate}
       />
     </ScrollView>
+    // </SafeAreaView>
   );
 }
 
